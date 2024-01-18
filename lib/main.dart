@@ -11,6 +11,16 @@ class HalamanSatu extends StatelessWidget {
 
   Widget build (BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        leading: const Icon(Icons.home, color: Colors.white, size: 30.0,),
+        title: const Center(
+          child:  Text('Anthrofax', style: TextStyle(color: Colors.white))
+        ),
+        actions: const [
+           Icon(Icons.search, color: Colors.white, size: 30.0,)
+        ],
+      ),
       body: Center(
         child: Container(
           color: Colors.black38,
