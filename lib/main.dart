@@ -1,18 +1,24 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(new MaterialApp(
-    home: new HelloWorld(),
+  runApp( MaterialApp(
+    home:  HalamanSatu(),
   ));
 }
 
-class HelloWorld extends StatelessWidget {
+class HalamanSatu extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
-    return new Scaffold(
-        body: new Center(
-          child: new Text('Hello Flutter!'),
-        )
-      );
+
+  Widget build (BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Container(
+          color: Colors.black38,
+          width: 200.0,
+          height: 100.0,
+          child: Icon(Icons.android, color: Colors.yellow[50], size: 70.0,),
+        ),
+      ),
+    );
   }
 }
