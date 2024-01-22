@@ -1,62 +1,75 @@
 import 'package:flutter/material.dart';
+import './hal_headset.dart' as Headset;
+import './hal_komputer.dart' as Komputer;
+import './hal_radio.dart' as Radio;
+import './hal_smartphone.dart' as Smartphone;
 
 void main() {
-  runApp(MaterialApp(
-    home: const HalamanSatu(),
-    title: 'Latihan Navigasi',
-    routes: <String, WidgetBuilder>{
-      '/HalamanSatu': (BuildContext context) => const HalamanSatu(),
-      '/HalamanDua': (BuildContext context) => const HalamanDua(),
-    },
+  runApp(const MaterialApp(
+    title: "Tab Bar",
+    home: Home(),
   ));
 }
 
-class HalamanSatu extends StatelessWidget {
-  const HalamanSatu({super.key});
+class Home extends StatefulWidget {
+  const Home({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.blue[50],
-          title: const Center(
-            child: Text('Halaman Satu'),
-          ),
-        ),
-        body: Center(
-          child: IconButton(
-            icon: Icon(
-              Icons.android,
-              color: Colors.green[300],
-              size: 50.0,
-            ),
-            onPressed: () {
-              Navigator.pushNamed(context, '/HalamanDua');
-            },
-          ),
-        ));
-  }
+  State<Home> createState() => _HomeState();
 }
 
-class HalamanDua extends StatelessWidget {
-  const HalamanDua({super.key});
+class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
+  late TabController controller;
+
+  @override
+  void initState() {
+    controller = TabController(length: 4, vsync: this);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue[50],
-        title: const Center(
-          child: Text('Halaman Dua'),
+        backgroundColor: Colors.blue[100],
+        title: const Text("Daftar Elektronik"),
+        bottom:  TabBar(
+          controller: controller,
+          tabs: const [
+            Tab(icon: Icon(Icons.computer), text: 'Computer',),
+            Tab(icon: Icon(Icons.headset), text: "Headset",),
+            Tab(icon: Icon(Icons.radio), text: 'Radio',),
+            Tab(icon: Icon(Icons.smartphone), text: 'Smartphone',),
+          ],
         ),
       ),
-      body: Center(
-          child: IconButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/HalamanSatu');
-              },
-              icon: const Icon(Icons.music_note,
-                  color: Colors.black, size: 50.0))),
+      body: TabBarView(
+        controller: controller,
+        children: const [
+          Komputer.Computer(),
+          Headset.Headset(),
+          Radio.Radio(),
+          Smartphone.Smartphone()
+        ],
+      ),
+      bottomNavigationBar: Material(
+        color: Colors.amber,
+        child: TabBar(
+          controller: controller,
+          tabs: const [
+            Tab(icon: Icon(Icons.computer),),
+            Tab(icon: Icon(Icons.headset),),
+            Tab(icon: Icon(Icons.radio),),
+            Tab(icon: Icon(Icons.smartphone),)
+          ],
+        ),
+      ),
     );
   }
 }
