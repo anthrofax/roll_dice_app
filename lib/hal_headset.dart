@@ -5,13 +5,19 @@ class Headset extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
+    return Center(
       child: Column(
         children: [
-          Padding(padding: EdgeInsets.all(20.0)),
-          Text('Headset', style: TextStyle(fontSize: 30.0),),
-          Padding(padding: EdgeInsets.all(20.0)),
-          Icon(Icons.headset, size: 90.0,)
+          const Padding(padding: EdgeInsets.all(20.0)),
+          const Text(
+            'Headset',
+            style: TextStyle(fontSize: 30.0),
+          ),
+          const Padding(padding: EdgeInsets.all(20.0)),
+          Image.asset(
+            'img/headset.png',
+            width: 200.0,
+          )
         ],
       ),
     );

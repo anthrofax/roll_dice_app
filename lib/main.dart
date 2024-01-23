@@ -59,7 +59,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         ],
       ),
       bottomNavigationBar: Material(
-        color: Colors.amber,
+        color: Colors.blue[100],
         child: TabBar(
           controller: controller,
           tabs: const [
