@@ -1,32 +1,65 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:async';
+import 'dart:convert' show json;
 
 void main() {
-  runApp(MaterialApp(
-    home:
-        Home(data: List<String>.generate(300, (index) => "Ini data ke-${index+1}")),
+  runApp(const MaterialApp(
+    title: "Fetch JSON Data",
+    home: Home(),
   ));
 }
 
-class Home extends StatelessWidget {
-  const Home({super.key, required this.data});
+class Home extends StatefulWidget {
+  const Home({super.key});
 
-  final List<String> data;
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  late List dataJSON;
+
+  Future<String> ambilData() async {
+    http.Response hasil = await http.get(
+        Uri.parse("https://jsonplaceholder.typicode.com/posts") ,
+        headers: {"Accept": "application/json"});
+
+    setState(() {
+      dataJSON = json.decode(hasil.body);
+    });
+
+    return "";
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    ambilData();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.blue[300],
-        title: const Text('List View'),
-      ),
-      body: ListView.builder(
-          itemCount: data.length,
-          itemBuilder: (context, index) {
-            return ListTile(
-              leading: const Icon(Icons.widgets),
-              title: Text(data[index]),
-            );
-          }),
-    );
+        appBar: AppBar(
+          backgroundColor: Colors.amber,
+          title: const Text("List Data JSON"),
+        ),
+        body: ListView.builder(
+            // ignore: unnecessary_null_comparison
+            itemCount: dataJSON.length,
+            itemBuilder: (context, i) {
+              return Container(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(dataJSON[i]['title'], style: TextStyle(fontSize: 20.0, color: Colors.blue[300]),textAlign: TextAlign.center,),
+                    Text(dataJSON[i]['body'], style: const TextStyle(fontSize: 12.0,),textAlign: TextAlign.center,)
+                  ],
+                ),
+              );
+            }));
   }
 }
