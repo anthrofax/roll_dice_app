@@ -1,72 +1,100 @@
 import 'package:flutter/material.dart';
-import './hal_headset.dart' as Headset;
-import './hal_komputer.dart' as Komputer;
-import './hal_radio.dart' as Radio;
-import './hal_smartphone.dart' as Smartphone;
 
 void main() {
   runApp(const MaterialApp(
-    title: "Tab Bar",
-    home: Home(),
+    title: 'List View ',
+    home: ListTutorial(),
   ));
 }
 
-class Home extends StatefulWidget {
-  const Home({super.key});
-
-  @override
-  State<Home> createState() => _HomeState();
-}
-
-class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
-  late TabController controller;
-
-  @override
-  void initState() {
-    controller = TabController(length: 4, vsync: this);
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
+class ListTutorial extends StatelessWidget {
+  const ListTutorial({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue[100],
-        title: const Text("Daftar Elektronik"),
-        bottom:  TabBar(
-          controller: controller,
-          tabs: const [
-            Tab(icon: Icon(Icons.computer), text: 'Computer',),
-            Tab(icon: Icon(Icons.headset), text: "Headset",),
-            Tab(icon: Icon(Icons.radio), text: 'Radio',),
-            Tab(icon: Icon(Icons.smartphone), text: 'Smartphone',),
-          ],
-        ),
+        backgroundColor: Colors.red[300],
+        title: const Text('Daftar Tutorial'),
       ),
-      body: TabBarView(
-        controller: controller,
+      body: ListView(
         children: const [
-          Komputer.Computer(),
-          Headset.Headset(),
-          Radio.Radio(),
-          Smartphone.Smartphone()
+          ContentList(
+              image:
+                  'https://w7.pngwing.com/pngs/1005/511/png-transparent-web-development-html-logo-world-wide-web-consortium-create-html-signature-angle-text-rectangle-thumbnail.png',
+              title: 'HTML'),
+          ContentList(
+              image:
+                  'https://w7.pngwing.com/pngs/696/424/png-transparent-logo-css-css3-thumbnail.png',
+              title: 'CSS'),
+          ContentList(
+              image:
+                  'https://w7.pngwing.com/pngs/640/199/png-transparent-javascript-logo-html-javascript-logo-angle-text-rectangle-thumbnail.png',
+              title: 'Javascript'),
+          ContentList(
+              image:
+                  'https://w7.pngwing.com/pngs/751/3/png-transparent-logo-php-html-others-text-trademark-logo-thumbnail.png',
+              title: 'PHP'),
+          ContentList(
+              image:
+                  'https://w7.pngwing.com/pngs/399/620/png-transparent-laravel-hd-logo.png',
+              title: 'Laravel'),
+          ContentList(
+              image:
+                  'https://w7.pngwing.com/pngs/578/816/png-transparent-java-class-file-java-platform-standard-edition-java-development-kit-java-runtime-environment-coffee-jar-text-class-orange-thumbnail.png',
+              title: 'Java'),
+          ContentList(
+              image:
+                  'https://w7.pngwing.com/pngs/46/626/png-transparent-c-logo-the-c-programming-language-computer-icons-computer-programming-source-code-programming-miscellaneous-template-blue.png',
+              title: 'C++'),
+          ContentList(
+              image:
+                  'https://w7.pngwing.com/pngs/359/101/png-transparent-aperture-laboratories-science-technology-laboratory-portal-science-blue-text-computer-thumbnail.png',
+              title: 'React'),
+          ContentList(
+              image:
+                  'https://w7.pngwing.com/pngs/293/485/png-transparent-tailwind-css-hd-logo.png',
+              title: 'Tailwind CSS'),
         ],
       ),
-      bottomNavigationBar: Material(
-        color: Colors.blue[100],
-        child: TabBar(
-          controller: controller,
-          tabs: const [
-            Tab(icon: Icon(Icons.computer),),
-            Tab(icon: Icon(Icons.headset),),
-            Tab(icon: Icon(Icons.radio),),
-            Tab(icon: Icon(Icons.smartphone),)
+    );
+  }
+}
+
+class ContentList extends StatelessWidget {
+  const ContentList({super.key, required this.image, required this.title});
+
+  final String image;
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(20.0),
+      child: Center(
+        child: Row(
+          children: [
+            Image(
+              image: NetworkImage(image),
+              width: 100.0,
+            ),
+            Container(
+              padding: const EdgeInsets.all(10.0),
+              child: Center(
+                child: Column(
+                  children: [
+                    Text(title,
+                        style: const TextStyle(
+                          fontSize: 20.0,
+                        )),
+                    const Text(
+                      'Tutorial description.....',
+                      style: TextStyle(fontSize: 15.0, color: Colors.grey),
+                    ),
+                  ],
+                ),
+              ),
+            )
           ],
         ),
       ),
