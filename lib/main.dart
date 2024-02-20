@@ -8,13 +8,15 @@ void main() {
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.black, Colors.orange],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight
-          ),
+              colors: [Colors.black, Colors.orange],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight),
         ),
         child: const Center(
-          child: Text('Hello Flutter'),
+          child: Text(
+            'Hello Flutter',
+            style: TextStyle(color: Colors.white, fontSize: 28),
+          ),
         ),
       ),
     )),
