@@ -2,14 +2,17 @@ import 'package:flutter/material.dart';
 
 void main() {
   runApp(
-    MaterialApp(
+     const MaterialApp(
         home: Scaffold(
-            backgroundColor: const Color.fromARGB(255, 184, 163, 87),
+            backgroundColor: Color.fromARGB(255, 184, 163, 87),
             body: GradientContainer())),
   );
 }
 
 class GradientContainer extends StatelessWidget {
+  // const GradientContainer({key}) : super(key: key);
+  const GradientContainer({super.key});
+
   @override
   Widget build(context) {
     return Container(
