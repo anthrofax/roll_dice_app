@@ -11,6 +11,9 @@ class GradientContainer extends StatelessWidget {
 
   const GradientContainer({super.key, required this.colors});
 
+  GradientContainer.purple({super.key})
+      : colors = [Colors.black, Colors.purple];
+
   final List<Color> colors;
 
   @override
@@ -21,8 +24,11 @@ class GradientContainer extends StatelessWidget {
         gradient: LinearGradient(
             colors: colors, begin: startAlignment, end: endAlignment),
       ),
-      child: const Center(
-        child: StyledText('Hello world!'),
+      child: Center(
+        child: Image.asset(
+          'assets/img/dice-1.png',
+          width: 200,
+        ),
       ),
     );
   }
