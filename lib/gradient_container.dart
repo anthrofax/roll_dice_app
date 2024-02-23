@@ -19,18 +19,26 @@ class GradientContainer extends StatelessWidget {
   @override
   Widget build(context) {
     // startAlignment = Alignment.topLeft;
+    void rollDice() {
+      //
+    }
+
     return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-            colors: colors, begin: startAlignment, end: endAlignment),
-      ),
-      child: Center(
-        child: Image.asset(
-          'assets/img/dice-1.png',
-          width: 200,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+              colors: colors, begin: startAlignment, end: endAlignment),
         ),
-      ),
-    );
+        child: Column(
+          children: [
+            Center(
+              child: Image.asset(
+                'assets/img/dice-1.png',
+                width: 200,
+              ),
+            ),
+            TextButton(onPressed: rollDice, child: const Text('Roll Dice'))
+          ],
+        ));
   }
 }
 
