@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:learn_flutter/styled_text.dart';
+import 'package:learn_flutter/roll_dice.dart';
 
 // Alignment? startAlignment;
 Alignment startAlignment = Alignment.topLeft;
@@ -9,8 +9,10 @@ Alignment endAlignment = Alignment.bottomRight;
 class GradientContainer extends StatelessWidget {
   // const GradientContainer({key}) : super(key: key);
 
+// Regular Constructor Function
   const GradientContainer({super.key, required this.colors});
 
+// Custom Constructor Function
   GradientContainer.purple({super.key})
       : colors = [Colors.black, Colors.purple];
 
@@ -19,35 +21,13 @@ class GradientContainer extends StatelessWidget {
   @override
   Widget build(context) {
     // startAlignment = Alignment.topLeft;
-    void rollDice() {
-      //
-    }
-
     return Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
               colors: colors, begin: startAlignment, end: endAlignment),
         ),
-        child: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Image.asset(
-                'assets/img/dice-1.png',
-                width: 200,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              TextButton(
-                  onPressed: rollDice,
-                  style: TextButton.styleFrom(
-                      // padding: const EdgeInsets.only(top: 20),
-                      foregroundColor: Colors.white,
-                      textStyle: const TextStyle(fontSize: 28)),
-                  child: const Text('Roll Dice'))
-            ],
-          ),
+        child: const Center(
+          child: RollDice()
         ));
   }
 }
